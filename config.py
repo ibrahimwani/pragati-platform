@@ -6,9 +6,14 @@ load_dotenv()
 
 class Config:
     SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret-key')
+<<<<<<< HEAD
     MONGODB_SETTINGS = {
         'host': os.getenv('MONGODB_URI', 'mongodb://localhost:27017/pragati')
     }
+=======
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'sqlite:///pragati.db')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+>>>>>>> 7207c3cde94ad96c346245d502a0a8a968ee6d09
     UPLOAD_FOLDER = 'static/uploads'
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB max file size
     

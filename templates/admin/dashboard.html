@@ -1,0 +1,148 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Admin Dashboard</h1>
+    <button class="btn-primary">
+        <i class="fas fa-plus"></i> Add Content
+    </button>
+</div>
+
+<!-- Stats Grid -->
+<div class="stats-grid">
+    <!-- Total Users -->
+    <div class="stat-card">
+        <div class="stat-header">
+            <span class="stat-label">Total Users</span>
+            <i class="fas fa-users stat-icon icon-purple"></i>
+        </div>
+        <div class="stat-value">{{ stats.total_users }}</div>
+        <div class="stat-growth">
+            <i class="fas fa-arrow-up"></i> 12% this month
+        </div>
+    </div>
+
+    <!-- Active Jobs -->
+    <div class="stat-card">
+        <div class="stat-header">
+            <span class="stat-label">Active Jobs</span>
+            <i class="fas fa-briefcase stat-icon icon-pink"></i>
+        </div>
+        <div class="stat-value">{{ stats.active_jobs }}</div>
+        <div class="stat-growth">
+            <i class="fas fa-arrow-up"></i> 8% this month
+        </div>
+    </div>
+
+    <!-- Course Enrollments -->
+    <div class="stat-card">
+        <div class="stat-header">
+            <span class="stat-label">Course Enrollments</span>
+            <i class="fas fa-graduation-cap stat-icon icon-blue"></i>
+        </div>
+        <div class="stat-value">{{ stats.course_enrollments }}</div>
+        <div class="stat-growth">
+            <i class="fas fa-arrow-up"></i> 15% this month
+        </div>
+    </div>
+
+    <!-- Mentor Matches -->
+    <div class="stat-card">
+        <div class="stat-header">
+            <span class="stat-label">Mentor Matches</span>
+            <i class="fas fa-handshake stat-icon icon-teal"></i>
+        </div>
+        <div class="stat-value">{{ stats.mentor_matches }}</div>
+        <div class="stat-growth">
+            <i class="fas fa-arrow-up"></i> 22% this month
+        </div>
+    </div>
+</div>
+
+<!-- Charts Section -->
+<div class="charts-grid">
+    <!-- User Growth Chart -->
+    <div class="chart-card">
+        <div class="chart-header">
+            <h3 class="chart-title">User Growth</h3>
+            <select class="chart-select">
+                <option>Last 30 days</option>
+                <option>Last 6 months</option>
+            </select>
+        </div>
+        <canvas id="userGrowthChart"></canvas>
+    </div>
+
+    <!-- Platform Activity -->
+    <div class="chart-card">
+        <div class="chart-header">
+            <h3 class="chart-title">Platform Activity</h3>
+            <select class="chart-select">
+                <option>Last 30 days</option>
+            </select>
+        </div>
+        <canvas id="activityChart"></canvas>
+    </div>
+</div>
+
+<script>
+    // User Growth Chart
+    const ctxGrowth = document.getElementById('userGrowthChart').getContext('2d');
+    new Chart(ctxGrowth, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'New Users',
+                data: [120, 190, 300, 500, 700, 900],
+                borderColor: '#9b51e0',
+                backgroundColor: 'rgba(155, 81, 224, 0.1)',
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+    // Activity Chart
+    const ctxActivity = document.getElementById('activityChart').getContext('2d');
+    new Chart(ctxActivity, {
+        type: 'bar',
+        data: {
+            labels: ['Course Enroll', 'Job Apps', 'Matches', 'Comm. Posts'],
+            datasets: [{
+                label: 'Activity',
+                data: [
+                    {{ stats.course_enrollments }},
+            {{ stats.job_applications }}, 
+                    {{ stats.mentor_matches }},
+        {{ stats.community_posts }}
+                ],
+        backgroundColor: [
+        '#9b51e0',
+        '#e91e63',
+        '#00bcd4',
+        '#00ca72'
+    ]
+            }]
+        },
+        options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false }
+        },
+        scales: {
+            y: { beginAtZero: true }
+        }
+    }
+    });
+</script>
+{% endblock %}

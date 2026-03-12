@@ -1,7 +1,11 @@
 Flask==2.3.3
 Flask-Login==0.6.2
+<<<<<<< HEAD
 Flask-MongoEngine==1.0.0
 pymongo==4.5.0
+=======
+Flask-SQLAlchemy==3.0.5
+>>>>>>> 7207c3cde94ad96c346245d502a0a8a968ee6d09
 python-dotenv==1.0.0
 Werkzeug==2.3.7
 scikit-learn==1.4.0

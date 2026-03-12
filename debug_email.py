@@ -14,14 +14,22 @@ password = os.environ.get('MAIL_PASSWORD')
 print(f"--- Email Debugger ---")
 if not sender:
     print("ERROR: MAIL_USERNAME environment variable is NOT set.")
+<<<<<<< HEAD
     print("Recommendation: Set MAIL_USERNAME in your .env file.")
+=======
+    print("Usage: $env:MAIL_USERNAME='your-email@gmail.com'; $env:MAIL_PASSWORD='your-app-password'; python debug_email.py")
+>>>>>>> 7207c3cde94ad96c346245d502a0a8a968ee6d09
     sys.exit(1)
 
 print(f"Sender: {sender}")
 
 if not password:
     print("ERROR: MAIL_PASSWORD environment variable is NOT set.")
+<<<<<<< HEAD
     print("Recommendation: Set MAIL_PASSWORD in your .env file.")
+=======
+    print("Usage: $env:MAIL_PASSWORD='your-app-password'; python debug_email.py")
+>>>>>>> 7207c3cde94ad96c346245d502a0a8a968ee6d09
     sys.exit(1)
 
 print(f"Password Check: Length is {len(password)} characters.")
